@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('blog.urls')),   # блог
     path('accounts/', include('django.contrib.auth.urls')),  # login/logout
     path('signup/', blog_views.signup, name='signup'),       # регистрация
+    
 ]

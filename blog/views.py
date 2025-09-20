@@ -3,7 +3,7 @@ from .models import Post
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 
 def home(request):
@@ -58,3 +58,12 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def site_logout(request):
+    """
+    Log out user from the project site only.
+    """
+    # Optionally, check if user is logged in
+    if request.user.is_authenticated:
+        logout(request)  # This logs out from the current session
+    return redirect('home')  # Redirect to your site home page
