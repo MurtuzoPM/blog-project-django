@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1 class="mb-4">All Posts</h1>
+{% for post in posts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h4><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h4>
+            <p>{{ post.content|truncatechars:200 }}</p>
+            <small>By {{ post.author }} on {{ post.created_at }}</small>
+        </div>
+    </div>
+{% empty %}
+    <p>No posts yet.</p>
+{% endfor %}
+{% endblock %}
